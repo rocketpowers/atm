@@ -1,0 +1,4 @@
+fuck validation onFire
+
+interceptacao e tratamento error message bad request
+

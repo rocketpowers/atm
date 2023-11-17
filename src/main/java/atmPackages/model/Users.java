@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -20,21 +22,25 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	
-	
-	@Pattern(regexp = "[a-z]+")
-	@NotBlank
-	private String name;
 
-	@NotBlank
+	
+	@NotBlank(message = "fill in the field !")
+	@Pattern(regexp = "[a-z]+", message = "only lowercase letters")
+	private String name;
+	
+	@Pattern(regexp = "[a-z]+", message = "only lowercase letters")
+	@NotBlank(message=" fill in the field !")
 	private String lastName;
 
 	@Column(unique = true)
 	@CPF
-	@NotBlank
+	@NotBlank(message=" fill in the field !")
 	private String cpf;
 
-	@NotBlank
+	@Pattern(regexp = "[0-9]+", message = "only numbers ")
+	//@Min(value = 10)
+	//@Max(value = 11)
+	@NotBlank(message=" fill in the field !")
 	private String phone;
 
 }
